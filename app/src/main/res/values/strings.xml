@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">general_filter</string>
+    <string name="school_name">學校名稱</string>
+    <string name="department_name">科系名稱</string>
     <string-array name= "school_name">
         <item>國立臺灣大學</item>
         <item>國立臺灣大學</item>
@@ -10920,7 +10922,7 @@
         <item>不要求</item>
     </string-array>
 
-    <string-array name= "interview_quota">
+    <string-array name= "exam_quota">
         <item>60</item>
         <item>115</item>
         <item>72</item>

@@ -9,6 +9,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
 
     private val departments = ArrayList<Department>()
+    private lateinit var adapter: DepartmentsAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,5 +32,12 @@ class MainActivity : AppCompatActivity() {
             department.enrollmentQuota = res[5][i]
             departments.add(department)
         }
+
+        val linearLayoutManager = LinearLayoutManager(this)
+        linearLayoutManager.orientation = RecyclerView.VERTICAL
+        rv_department.layoutManager = linearLayoutManager
+        adapter = DepartmentsAdapter(this, departments)
+        rv_department.adapter = adapter
+        adapter.notifyDataSetChanged()
     }
 }
