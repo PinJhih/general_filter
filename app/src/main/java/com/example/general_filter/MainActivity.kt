@@ -1,5 +1,7 @@
 package com.example.general_filter
 
+import android.app.Activity
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -7,13 +9,18 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
-
+    private lateinit var userInfo: SharedPreferences
     private val departments = ArrayList<Department>()
     private lateinit var adapter: DepartmentsAdapter
+    private var status = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        for (i in 0 until 2181)
+            status += 'f'
+        userInfo = getSharedPreferences("userInfo", Activity.MODE_PRIVATE)
+        status = userInfo.getString("status", status)!!
         val ids = arrayOf(
             R.array.school_name, R.array.department_name,
             R.array.code, R.array.exam_date,
@@ -30,14 +37,34 @@ class MainActivity : AppCompatActivity() {
             department.examDate = res[3][i]
             department.examQuota = res[4][i]
             department.enrollmentQuota = res[5][i]
+            department.pinned = status[i] == 't'
             departments.add(department)
         }
-
         val linearLayoutManager = LinearLayoutManager(this)
         linearLayoutManager.orientation = RecyclerView.VERTICAL
         rv_department.layoutManager = linearLayoutManager
         adapter = DepartmentsAdapter(this, departments)
         rv_department.adapter = adapter
         adapter.notifyDataSetChanged()
+    }
+
+    fun setPinnedItem(position: Int) {
+        departments[position].pinned = true
+        adapter.notifyDataSetChanged()
+        val s = status
+        status = ""
+        for (i in s.indices) {
+            status += if (i == position)
+                't'
+            else
+                s[i]
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        val editor = userInfo.edit()
+        editor.putString("status", status)
+        editor.apply()
     }
 }

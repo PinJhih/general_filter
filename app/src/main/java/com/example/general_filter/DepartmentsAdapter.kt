@@ -1,5 +1,6 @@
 package com.example.general_filter
 
+import android.app.AlertDialog
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -26,5 +27,13 @@ class DepartmentsAdapter(
         val name = departments[position].schoolName + " " + departments[position].departmentName
         itemView.tv_name.text = name
         itemView.tv_exam_date.text = departments[position].examDate
+        if (departments[position].pinned)
+            itemView.btn_pin.text = "已加入"
+        else
+            itemView.btn_pin.text = "加入"
+        itemView.btn_pin.setOnClickListener {
+            if (!departments[position].pinned)
+                (context as MainActivity).setPinnedItem(position)
+        }
     }
 }

@@ -14,5 +14,6 @@ data class Department(
     var examDate: String = "",
     var category: String = "",
     var technicalExam: String = "",
-    var helpingMeasures: String = ""
+    var helpingMeasures: String = "",
+    var pinned:Boolean = false
 )
