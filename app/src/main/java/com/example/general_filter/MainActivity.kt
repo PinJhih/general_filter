@@ -1,9 +1,11 @@
 package com.example.general_filter
 
 import android.app.Activity
+import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_main.*
@@ -40,12 +42,19 @@ class MainActivity : AppCompatActivity() {
             department.pinned = status[i] == 't'
             departments.add(department)
         }
+
         val linearLayoutManager = LinearLayoutManager(this)
         linearLayoutManager.orientation = RecyclerView.VERTICAL
         rv_department.layoutManager = linearLayoutManager
         adapter = DepartmentsAdapter(this, departments)
         rv_department.adapter = adapter
         adapter.notifyDataSetChanged()
+
+        btn_show_pinned.setOnClickListener{
+            val i = Intent(this, ViewPinnedActivity::class.java)
+            i.putExtra("status", status)
+            startActivity(i)
+        }
     }
 
     fun setPinnedItem(position: Int) {

@@ -2,7 +2,7 @@
     <string name="app_name">general_filter</string>
     <string name="school_name">學校名稱</string>
     <string name="department_name">科系名稱</string>
-    <string-array name= "school_name">
+    <string-array name="school_name">
         <item>國立臺灣大學</item>
         <item>國立臺灣大學</item>
         <item>國立臺灣大學</item>
@@ -2186,7 +2186,7 @@
         <item>臺北基督學院</item>
     </string-array>
 
-    <string-array name= "department_name">
+    <string-array name="department_name">
         <item>中國文學系</item>
         <item>外國語文學系</item>
         <item>歷史學系</item>
@@ -4370,7 +4370,7 @@
         <item>基督教博雅學系</item>
     </string-array>
 
-    <string-array name= "code">
+    <string-array name="code">
         <item>001012</item>
         <item>001022</item>
         <item>001032</item>
@@ -6554,7 +6554,7 @@
         <item>154012</item>
     </string-array>
 
-    <string-array name= "enrollment_quota">
+    <string-array name="enrollment_quota">
         <item>20</item>
         <item>46</item>
         <item>24</item>
@@ -8738,7 +8738,7 @@
         <item>9</item>
     </string-array>
 
-    <string-array name= "gender_requirement">
+    <string-array name="gender_requirement">
         <item>不要求</item>
         <item>不要求</item>
         <item>不要求</item>
@@ -10922,7 +10922,7 @@
         <item>不要求</item>
     </string-array>
 
-    <string-array name= "exam_quota">
+    <string-array name="exam_quota">
         <item>60</item>
         <item>115</item>
         <item>72</item>
@@ -13106,7 +13106,7 @@
         <item>27</item>
     </string-array>
 
-    <string-array name= "aboriginal_quota">
+    <string-array name="aboriginal_quota">
         <item>無</item>
         <item>無</item>
         <item>無</item>
@@ -15290,7 +15290,7 @@
         <item>無</item>
     </string-array>
 
-    <string-array name= "offshore_islands_quota">
+    <string-array name="offshore_islands_quota">
         <item>無</item>
         <item>2</item>
         <item>1</item>
@@ -17474,7 +17474,7 @@
         <item>無</item>
     </string-array>
 
-    <string-array name= "plan_quota">
+    <string-array name="plan_quota">
         <item>無</item>
         <item>無</item>
         <item>無</item>
@@ -19658,7 +19658,7 @@
         <item>無</item>
     </string-array>
 
-    <string-array name= "registration_fee">
+    <string-array name="registration_fee">
         <item>1500</item>
         <item>1500</item>
         <item>1500</item>
@@ -21842,7 +21842,7 @@
         <item>0</item>
     </string-array>
 
-    <string-array name= "exam_date">
+    <string-array name="exam_date">
         <item>110.04.14</item>
         <item>110.04.17</item>
         <item>110.04.22至110.04.23</item>
@@ -24026,7 +24026,7 @@
         <item>110.05.01至110.05.02</item>
     </string-array>
 
-    <string-array name= "category">
+    <string-array name="category">
         <item>一般</item>
         <item>一般</item>
         <item>一般</item>
@@ -26210,7 +26210,7 @@
         <item>一般</item>
     </string-array>
 
-    <string-array name= "technical_exam">
+    <string-array name="technical_exam">
         <item>否</item>
         <item>否</item>
         <item>否</item>
@@ -28394,7 +28394,7 @@
         <item>否</item>
     </string-array>
 
-    <string-array name= "helping_measures">
+    <string-array name="helping_measures">
         <item>否</item>
         <item>否</item>
         <item>否</item>

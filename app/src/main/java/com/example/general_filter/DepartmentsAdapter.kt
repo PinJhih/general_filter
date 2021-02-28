@@ -1,6 +1,5 @@
 package com.example.general_filter
 
-import android.app.AlertDialog
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
