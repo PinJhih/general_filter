@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">general_filter</string>
+    <string name="app_name">簡章篩選</string>
     <string name="school_name">學校名稱</string>
     <string name="department_name">科系名稱</string>
     <string-array name="school_name">
