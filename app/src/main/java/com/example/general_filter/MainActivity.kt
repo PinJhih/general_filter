@@ -5,7 +5,8 @@ import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.core.os.bundleOf
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_main.*
@@ -13,6 +14,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
     private lateinit var userInfo: SharedPreferences
     private val departments = ArrayList<Department>()
+    private var result = ArrayList<Department>()
     private lateinit var adapter: DepartmentsAdapter
     private var status = ""
 
@@ -40,21 +42,83 @@ class MainActivity : AppCompatActivity() {
             department.examQuota = res[4][i]
             department.enrollmentQuota = res[5][i]
             department.pinned = status[i] == 't'
+            department.index = i
             departments.add(department)
         }
-
+        result.addAll(departments)
         val linearLayoutManager = LinearLayoutManager(this)
         linearLayoutManager.orientation = RecyclerView.VERTICAL
         rv_department.layoutManager = linearLayoutManager
-        adapter = DepartmentsAdapter(this, departments)
+        adapter = DepartmentsAdapter(this, result)
         rv_department.adapter = adapter
         adapter.notifyDataSetChanged()
 
-        btn_show_pinned.setOnClickListener{
+        btn_show_pinned.setOnClickListener {
             val i = Intent(this, ViewPinnedActivity::class.java)
             i.putExtra("status", status)
             startActivity(i)
         }
+
+        ed_school_name.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if (ed_school_name.editableText.isEmpty() && ed_department_name.editableText.isEmpty()) {
+                    result.clear()
+                    result.addAll(departments)
+                    adapter.notifyDataSetChanged()
+                } else if (ed_school_name.editableText.isNotEmpty() && ed_department_name.editableText.isEmpty()) {
+                    result.clear()
+                    for (i in departments) {
+                        if (ed_school_name.editableText.toString() in i.schoolName)
+                            result.add(i)
+                    }
+                    adapter.notifyDataSetChanged()
+                } else if (ed_school_name.editableText.isNotEmpty() && ed_department_name.editableText.isNotEmpty()) {
+                    result.clear()
+                    for (i in departments) {
+                        if (ed_school_name.editableText.toString() in i.schoolName && ed_department_name.editableText.toString() in i.departmentName)
+                            result.add(i)
+                    }
+                    adapter.notifyDataSetChanged()
+                }
+            }
+        })
+
+        ed_department_name.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if (ed_school_name.editableText.isEmpty() && ed_department_name.editableText.isEmpty()) {
+                    result.clear()
+                    result.addAll(departments)
+                    adapter.notifyDataSetChanged()
+                } else if (ed_school_name.editableText.isEmpty() && ed_department_name.editableText.isNotEmpty()) {
+                    result.clear()
+                    for (i in departments) {
+                        if (ed_department_name.editableText.toString() in i.departmentName)
+                            result.add(i)
+                    }
+                    adapter.notifyDataSetChanged()
+                } else if (ed_school_name.editableText.isNotEmpty() && ed_department_name.editableText.isNotEmpty()) {
+                    result.clear()
+                    for (i in departments) {
+                        if (ed_school_name.editableText.toString() in i.schoolName && ed_department_name.editableText.toString() in i.departmentName)
+                            result.add(i)
+                    }
+                    adapter.notifyDataSetChanged()
+                }
+                adapter.notifyDataSetChanged()
+            }
+        })
     }
 
     fun setPinnedItem(position: Int) {

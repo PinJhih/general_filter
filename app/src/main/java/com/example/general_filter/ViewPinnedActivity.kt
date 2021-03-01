@@ -1,11 +1,14 @@
 package com.example.general_filter
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_view_pinned.*
+import java.net.HttpURLConnection
+import java.net.URL
 
 class ViewPinnedActivity : AppCompatActivity() {
     private val departments = ArrayList<Department>()
@@ -15,7 +18,7 @@ class ViewPinnedActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view_pinned)
 
-        var status =""
+        var status = ""
         intent.extras?.let {
             status = it.getString("status")!!
         }
@@ -28,7 +31,7 @@ class ViewPinnedActivity : AppCompatActivity() {
         for (i in ids)
             res.add(resources.getStringArray(i))
         for (i in res[0].indices) {
-            if(status[i] == 't') {
+            if (status[i] == 't') {
                 val department = Department()
                 department.schoolName = res[0][i]
                 department.departmentName = res[1][i]
@@ -47,5 +50,15 @@ class ViewPinnedActivity : AppCompatActivity() {
         adapter = DepartmentsAdapter(this, departments)
         rv_pinned.adapter = adapter
         adapter.notifyDataSetChanged()
+
+        btn_show_web.setOnClickListener {
+            val intent = Intent(this, WebActivity::class.java)
+            val arr = ArrayList<String>()
+            for(i in departments){
+                arr.add(i.code)
+            }
+            intent.putExtra("codes", arr)
+            startActivity(intent)
+        }
     }
 }

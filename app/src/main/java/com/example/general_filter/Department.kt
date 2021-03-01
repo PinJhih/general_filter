@@ -15,5 +15,6 @@ data class Department(
     var category: String = "",
     var technicalExam: String = "",
     var helpingMeasures: String = "",
-    var pinned:Boolean = false
+    var pinned: Boolean = false,
+    var index: Int = 0
 )

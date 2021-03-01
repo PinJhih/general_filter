@@ -32,7 +32,7 @@ class DepartmentsAdapter(
             itemView.btn_pin.text = "加入"
         itemView.btn_pin.setOnClickListener {
             if (!departments[position].pinned)
-                (context as MainActivity).setPinnedItem(position)
+                (context as MainActivity).setPinnedItem(departments[position].index)
         }
     }
 }
