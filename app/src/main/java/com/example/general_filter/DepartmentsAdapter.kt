@@ -35,7 +35,7 @@ class DepartmentsAdapter(
             if (activity == 1)
                     (context as MainActivity).setPinnedItem(departments[position].index)
             else
-                    (context as ViewPinnedActivity).setPinnedItem(departments[position].index)
+                    (context as ViewPinnedActivity).setPinnedItem(departments[position].index, position)
         }
     }
 }

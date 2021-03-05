@@ -38,6 +38,7 @@ class ViewPinnedActivity : AppCompatActivity() {
                 department.examDate = res[3][i]
                 department.examQuota = res[4][i]
                 department.enrollmentQuota = res[5][i]
+                department.index = i
                 department.pinned = true
                 departments.add(department)
             }
@@ -61,8 +62,8 @@ class ViewPinnedActivity : AppCompatActivity() {
         }
     }
 
-    fun setPinnedItem(position: Int) {
-        departments[position].pinned = false
+    fun setPinnedItem(position: Int, index: Int) {
+        departments[index].pinned = false
         val s = status
         status = ""
         for (i in s.indices) {
@@ -74,7 +75,7 @@ class ViewPinnedActivity : AppCompatActivity() {
         val editor = userInfo.edit()
         editor.putString("status", status)
         editor.apply()
-        departments.remove(departments[position])
+        departments.remove(departments[index])
         adapter.notifyDataSetChanged()
     }
 }
