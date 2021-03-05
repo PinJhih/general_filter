@@ -55,8 +55,7 @@ class MainActivity : AppCompatActivity() {
 
         btn_show_pinned.setOnClickListener {
             val i = Intent(this, ViewPinnedActivity::class.java)
-            i.putExtra("status", status)
-            startActivity(i)
+            startActivityForResult(i, 0)
         }
 
         ed_school_name.addTextChangedListener(object : TextWatcher {
@@ -119,6 +118,15 @@ class MainActivity : AppCompatActivity() {
                 adapter.notifyDataSetChanged()
             }
         })
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        status = userInfo.getString("status", status)!!
+        for (i in status.indices) {
+            departments[i].pinned = status[i] == 't'
+        }
+        adapter.notifyDataSetChanged()
     }
 
     fun setPinnedItem(position: Int) {
