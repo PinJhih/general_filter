@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity() {
         val linearLayoutManager = LinearLayoutManager(this)
         linearLayoutManager.orientation = RecyclerView.VERTICAL
         rv_department.layoutManager = linearLayoutManager
-        adapter = DepartmentsAdapter(this, result)
+        adapter = DepartmentsAdapter(this, 1, result)
         rv_department.adapter = adapter
         adapter.notifyDataSetChanged()
 
@@ -122,20 +122,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun setPinnedItem(position: Int) {
-        departments[position].pinned = true
+        departments[position].pinned = !departments[position].pinned
         adapter.notifyDataSetChanged()
         val s = status
         status = ""
         for (i in s.indices) {
             status += if (i == position)
-                't'
+                if (departments[position].pinned) 't' else 'f'
             else
                 s[i]
         }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
         val editor = userInfo.edit()
         editor.putString("status", status)
         editor.apply()

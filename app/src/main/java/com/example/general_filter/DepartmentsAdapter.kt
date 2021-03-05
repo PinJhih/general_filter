@@ -9,6 +9,7 @@ import kotlinx.android.synthetic.main.item_department.view.*
 
 class DepartmentsAdapter(
     private val context: Context,
+    private val activity: Int,
     private val departments: ArrayList<Department>
 ) : RecyclerView.Adapter<DepartmentsAdapter.ViewHolder>() {
     class ViewHolder(v: View) : RecyclerView.ViewHolder(v)
@@ -31,8 +32,10 @@ class DepartmentsAdapter(
         else
             itemView.btn_pin.text = "加入"
         itemView.btn_pin.setOnClickListener {
-            if (!departments[position].pinned)
-                (context as MainActivity).setPinnedItem(departments[position].index)
+            if (activity == 1)
+                    (context as MainActivity).setPinnedItem(departments[position].index)
+            else
+                    (context as ViewPinnedActivity).setPinnedItem(departments[position].index)
         }
     }
 }
