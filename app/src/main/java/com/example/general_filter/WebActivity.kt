@@ -12,11 +12,12 @@ class WebActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_web)
-
+        wv_result.settings.useWideViewPort = true
         var index = 0
         intent.extras?.let {
             codes = it.getStringArrayList("codes")!!
-            wv_result.loadUrl(getUrl(codes[0]))
+            if (codes.count() != 0)
+                wv_result.loadUrl(getUrl(codes[0]))
         }
         setWebView(0)
         btn_last.setOnClickListener {
