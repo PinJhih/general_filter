@@ -18,7 +18,7 @@ class ViewPinnedActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view_pinned)
-
+        title = "釘選的校系"
         userInfo = getSharedPreferences("userInfo", Activity.MODE_PRIVATE)
         status = userInfo.getString("status", "")!!
         val ids = arrayOf(
