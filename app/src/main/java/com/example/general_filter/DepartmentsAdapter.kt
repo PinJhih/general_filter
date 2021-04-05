@@ -28,9 +28,9 @@ class DepartmentsAdapter(
         itemView.tv_name.text = name
         itemView.tv_exam_date.text = departments[position].examDate
         if (departments[position].pinned)
-            itemView.btn_pin.text = "已加入"
+            itemView.btn_pin.text = "取消釘選"
         else
-            itemView.btn_pin.text = "加入"
+            itemView.btn_pin.text = "釘選"
         itemView.btn_pin.setOnClickListener {
             if (activity == 1)
                     (context as MainActivity).setPinnedItem(departments[position].index)
