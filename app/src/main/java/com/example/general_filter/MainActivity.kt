@@ -150,4 +150,11 @@ class MainActivity : AppCompatActivity() {
         editor.putString("status", status)
         editor.apply()
     }
+
+    fun viewGeneral(id:String){
+        val codes = arrayListOf(id)
+        val i = Intent(this, WebActivity::class.java)
+        i.putExtra("codes", codes)
+        startActivity(i)
+    }
 }

@@ -37,5 +37,8 @@ class DepartmentsAdapter(
             else
                     (context as ViewPinnedActivity).setPinnedItem(departments[position].index, position)
         }
+        itemView.setOnClickListener {
+            (context as MainActivity).viewGeneral(departments[position].code)
+        }
     }
 }
