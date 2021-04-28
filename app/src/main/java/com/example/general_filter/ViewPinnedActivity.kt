@@ -7,6 +7,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.MobileAds
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_view_pinned.*
 
 class ViewPinnedActivity : AppCompatActivity() {
@@ -18,6 +21,10 @@ class ViewPinnedActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view_pinned)
+        MobileAds.initialize(this) {}
+        val adRequest = AdRequest.Builder().build()
+        ad_pinned.loadAd(adRequest)
+
         title = "釘選的校系"
         userInfo = getSharedPreferences("userInfo", Activity.MODE_PRIVATE)
         status = userInfo.getString("status", "")!!
