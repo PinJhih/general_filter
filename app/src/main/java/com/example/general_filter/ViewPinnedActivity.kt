@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.ads.AdRequest
@@ -36,19 +37,23 @@ class ViewPinnedActivity : AppCompatActivity() {
         val res = arrayListOf<Array<String>>()
         for (i in ids)
             res.add(resources.getStringArray(i))
-        for (i in res[0].indices) {
-            if (status[i] == 't') {
-                val department = Department()
-                department.schoolName = res[0][i]
-                department.departmentName = res[1][i]
-                department.code = res[2][i]
-                department.examDate = res[3][i]
-                department.examQuota = res[4][i]
-                department.enrollmentQuota = res[5][i]
-                department.index = i
-                department.pinned = true
-                departments.add(department)
+        try {
+            for (i in res[0].indices) {
+                if (status[i] == 't') {
+                    val department = Department()
+                    department.schoolName = res[0][i]
+                    department.departmentName = res[1][i]
+                    department.code = res[2][i]
+                    department.examDate = res[3][i]
+                    department.examQuota = res[4][i]
+                    department.enrollmentQuota = res[5][i]
+                    department.index = i
+                    department.pinned = true
+                    departments.add(department)
+                }
             }
+        }catch (e:Exception){
+            Toast.makeText(this, "尚未有訂選的校系", Toast.LENGTH_SHORT).show()
         }
 
         val linearLayoutManager = LinearLayoutManager(this)
