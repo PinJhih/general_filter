@@ -54,7 +54,7 @@
         android:contentDescription="@string/description"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_search" />
+        app:srcCompat="@android:drawable/sym_contact_card" />
 
     <com.google.android.gms.ads.AdView
         android:id="@+id/ad_main"
