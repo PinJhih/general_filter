@@ -72,25 +72,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (ed_school_name.editableText.isEmpty() && ed_department_name.editableText.isEmpty()) {
-                    result.clear()
-                    result.addAll(departments)
-                    adapter.notifyDataSetChanged()
-                } else if (ed_school_name.editableText.isNotEmpty() && ed_department_name.editableText.isEmpty()) {
-                    result.clear()
-                    for (i in departments) {
-                        if (ed_school_name.editableText.toString() in i.schoolName)
-                            result.add(i)
-                    }
-                    adapter.notifyDataSetChanged()
-                } else if (ed_school_name.editableText.isNotEmpty() && ed_department_name.editableText.isNotEmpty()) {
-                    result.clear()
-                    for (i in departments) {
-                        if (ed_school_name.editableText.toString() in i.schoolName && ed_department_name.editableText.toString() in i.departmentName)
-                            result.add(i)
-                    }
-                    adapter.notifyDataSetChanged()
-                }
+                updateList()
             }
         })
 
@@ -102,26 +84,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (ed_school_name.editableText.isEmpty() && ed_department_name.editableText.isEmpty()) {
-                    result.clear()
-                    result.addAll(departments)
-                    adapter.notifyDataSetChanged()
-                } else if (ed_school_name.editableText.isEmpty() && ed_department_name.editableText.isNotEmpty()) {
-                    result.clear()
-                    for (i in departments) {
-                        if (ed_department_name.editableText.toString() in i.departmentName)
-                            result.add(i)
-                    }
-                    adapter.notifyDataSetChanged()
-                } else if (ed_school_name.editableText.isNotEmpty() && ed_department_name.editableText.isNotEmpty()) {
-                    result.clear()
-                    for (i in departments) {
-                        if (ed_school_name.editableText.toString() in i.schoolName && ed_department_name.editableText.toString() in i.departmentName)
-                            result.add(i)
-                    }
-                    adapter.notifyDataSetChanged()
-                }
-                adapter.notifyDataSetChanged()
+                updateList()
             }
         })
     }
@@ -132,6 +95,16 @@ class MainActivity : AppCompatActivity() {
         for (i in status.indices) {
             departments[i].pinned = status[i] == 't'
         }
+        adapter.notifyDataSetChanged()
+    }
+
+    private fun updateList() {
+        result.clear()
+        val schoolName = "${ed_school_name.editableText}"
+        val departmentName = "${ed_department_name.editableText}"
+        for (i in departments)
+            if (schoolName in i.schoolName && departmentName in i.departmentName)
+                result.add(i)
         adapter.notifyDataSetChanged()
     }
 
@@ -151,7 +124,7 @@ class MainActivity : AppCompatActivity() {
         editor.apply()
     }
 
-    fun viewGeneral(id:String){
+    fun viewGeneral(id: String) {
         val codes = arrayListOf(id)
         val i = Intent(this, WebActivity::class.java)
         i.putExtra("codes", codes)
