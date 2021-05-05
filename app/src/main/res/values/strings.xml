@@ -4,6 +4,8 @@
     <string name="department_name">科系名稱</string>
     <string name="description">查看釘選內容</string>
     <string name="ad_id_main">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="ad_id_pinned">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="ad_id_general">ca-app-pub-3940256099942544/6300978111</string>
     <string-array name="school_name">
         <item>國立臺灣大學</item>
         <item>國立臺灣大學</item>
